@@ -28,9 +28,9 @@ module.exports = function(environment) {
 
     ENV.contentSecurityPolicy = {
       'default-src': "'none'",
-      'script-src': "'self' 'unsafe-eval' http://apidev.secondstreetapp.com:10904/ http://apidev.secondstreetapp.com:35714/",
+      'script-src': "'self' 'unsafe-eval' *",
       'font-src': "'self' ",
-      'connect-src': "'self' http://0.0.0.0:4202/csp-report http://apidev.secondstreetapp.com:10904/ ws://apidev.secondstreetapp.com:10904/",
+      'connect-src': "'self' *",
       'img-src': "'self'",
       'style-src': "'self' 'unsafe-inline' ",
       'media-src': "'self'"

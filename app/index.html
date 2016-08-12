@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>SocketDemo2</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {{content-for 'head'}}
+
+    <link rel="stylesheet" href="assets/vendor.css">
+    <link rel="stylesheet" href="assets/socket-demo-2.css">
+
+    {{content-for 'head-footer'}}
+  </head>
+  <body>
+    {{content-for 'body'}}
+
+    <script src="assets/vendor.js"></script>
+    <script src="http://apidev.secondstreetapp.com:10904/Scripts/jquery.signalR-2.2.1.min.js"></script>
+    <script src="http://apidev.secondstreetapp.com:10904/signalr/hubs"></script>
+    <script src="assets/socket-demo-2.js"></script>
+
+    {{content-for 'body-footer'}}
+  </body>
+</html>

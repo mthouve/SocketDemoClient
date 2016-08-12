@@ -1,0 +1,33 @@
+{{#if connected}}
+  <div>Connected: {{connected}}</div>
+  {{#unless joined}}
+    <div>
+      Name: {{input type="text" value=name}}
+      <button {{action "join" name}}>Join</button>
+    </div>
+  {{else}}
+    <div>Joined as {{name}}</div>
+    <div>
+      Message: {{input type="text" value=message}}
+      <button {{action "sendMessage" message}}>Send</button>
+    </div>
+    <div>
+      Users:
+      <ul>
+        {{#each users as |user|}}
+          <li>{{user.name}}</li>
+        {{/each}}
+      </ul>
+    </div>
+    <div>
+      Messages:
+      <ul>
+        {{#each messages as |item|}}
+          <li>{{item.name}}: {{item.message}}</li>
+        {{/each}}
+      </ul>
+    </div>
+  {{/unless}}
+{{else}}
+  Not connected
+{{/if}}

@@ -1,0 +1,14 @@
+{{#if connected}}
+  <p>
+    Connected: {{connected}}
+  </p>
+  <p>
+    Name: {{input type="text" value=name}}
+  </p>
+  <p>
+    Message: {{input type="text" value=message}}
+    <button {{action "sendMessage" message}}>Send</button>
+  </p>
+{{else}}
+  Not connected
+{{/if}}

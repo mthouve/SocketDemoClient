@@ -23,7 +23,7 @@
       Messages:
       <ul>
         {{#each messages as |item|}}
-          <li>{{item.name}}: {{item.message}}</li>
+          <li>{{item.name}}{{if item.name ": "}}{{item.message}}</li>
         {{/each}}
       </ul>
     </div>

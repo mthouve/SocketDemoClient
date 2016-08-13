@@ -13,8 +13,8 @@ export default Ember.Component.extend({
 
   init() {
     this._super(...arguments);
-    set(this, 'users', Ember.A());
-    set(this, 'messages', Ember.A());
+    set(this, 'users', []);
+    set(this, 'messages', []);
     const lobbyHub = get(this, 'lobbyHub');
 
     // Assign callback functions that the hub may broadcast to.
@@ -25,17 +25,16 @@ export default Ember.Component.extend({
   },
 
   lobbyEntered(topic, users) {
-    Ember.Logger.log('Lobby entered', topic, users);
     const userList = Ember.A(users).map((item) => {
       return User.create({
+        connectionId: item.ConnectionId,
         name: item.Name
       });
     });
-    set(this, 'joined', true);
     set(this, 'users', userList);
+    set(this, 'joined', true);
   },
   messageReceived(name, messageText) {
-    Ember.Logger.log('Message received', name, message);
     const message = Message.create({
       name: name,
       message: messageText
@@ -48,10 +47,14 @@ export default Ember.Component.extend({
       name: user.Name
     });
     get(this, 'users').addObject(newUser);
+    this.messageReceived(null, `User ${user.Name} arrived`);
   },
   userDisconnected(user) {
     const oldUser = get(this, 'users').findBy('connectionId', user.ConnectionId);
-    set(this, 'users', get(this, 'users').without(oldUser));
+    if (oldUser) {
+      get(this, 'users').removeObject(oldUser);
+      this.messageReceived(null, `User ${user.Name} disconnected`);
+    }
   },
 
   actions: {
